@@ -1,0 +1,26 @@
+import type { Metadata } from 'next';
+import './globals.css';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+import SpotlightCursor from './components/SpotlightCursor';
+
+export const metadata: Metadata = {
+  title: 'Abdur Rahim Hamidi | Climate & Disaster Risk Researcher',
+  description:
+    'Portfolio of Abdur Rahim Hamidi – Priestley Climate Scholar and DRR researcher focusing on social vulnerability, resilience and flood risk governance.',
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${GeistSans.variable} ${GeistMono.variable} relative`}>
+        {/* <SpotlightCursor></SpotlightCursor> */}
+        {children}
+      </body>
+    </html>
+  );
+}
