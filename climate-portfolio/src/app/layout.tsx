@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
-import SpotlightCursor from './components/SpotlightCursor';
 
 export const metadata: Metadata = {
   title: 'Abdur Rahim Hamidi | Climate & Disaster Risk Researcher',
@@ -17,10 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${GeistSans.variable} ${GeistMono.variable} relative`}>
-        {/* <SpotlightCursor></SpotlightCursor> */}
-        {children}
-      </body>
+      <body className={`${GeistSans.variable} ${GeistMono.variable} relative`}>{children}</body>
     </html>
   );
 }

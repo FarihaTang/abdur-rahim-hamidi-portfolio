@@ -1,141 +1,239 @@
-// app/page.tsx
+'use client';
+
 import Sidebar from '@/app/components/Sidebar';
+import Container from '@/app/components/Container';
 import Section from '@/app/components/Section';
-import { awards, education, experience, publications, skills, profile } from '@/app/lib/data';
+import Reveal from '@/app/components/Reveal';
+import Magnetic from '@/app/components/Magnetic';
+
+import {
+  profile,
+  publications,
+  manuscripts,
+  experience,
+  education,
+  skills,
+  grants,
+  trainings,
+  awards,
+  leadership,
+  seminars,
+} from '@/app/lib/data';
 
 export default function Page() {
   return (
-    <main className="mx-auto flex max-w-6xl flex-col md:flex-row">
-      <div className="w-full md:w-1/3">
-        <Sidebar />
-      </div>
+    <div className="flex flex-col md:flex-row max-w-6xl mx-auto min-h-screen">
+      {/* Sidebar */}
+      <Sidebar />
 
-      <div className="w-full md:w-2/3 px-6 py-10 md:py-16 md:px-10 space-y-16">
-        {/* About */}
-        <Section id="about" title="About">
-          {profile.summary.map(p => (
-            <p key={p}>{p}</p>
+      {/* Content */}
+      <Container>
+        {/* ABOUT */}
+        <Section id="about" title="About Me">
+          {profile.summary.map((p, i) => (
+            <Reveal key={i} delay={i * 0.15}>
+              <p className="text-text-body">{p}</p>
+            </Reveal>
           ))}
         </Section>
 
-        {/* Publications */}
-        <Section id="publications" title="Selected Publications">
-          <ul className="space-y-4">
-            {publications.map(pub => (
-              <li key={pub.title} className="space-y-1">
-                <p className="text-sm font-medium text-slate-100">{pub.title}</p>
-                <p className="text-xs text-slate-400">{pub.authors}</p>
-                <p className="text-xs text-slate-500 italic">
-                  {pub.journal} · {pub.year}
-                </p>
-                {pub.link && (
-                  <a
-                    href={pub.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-block text-xs text-emerald-400 underline underline-offset-4 hover:text-emerald-300"
-                  >
-                    View publication
-                  </a>
-                )}
-              </li>
+        {/* PUBLICATIONS */}
+        <Section id="publications" title="Publications">
+          <ul className="space-y-6">
+            {publications.map((pub, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <li className="space-y-1">
+                  <p className="font-medium text-text-secondary">{pub.title}</p>
+                  <p className="text-xs text-text-muted">{pub.authors}</p>
+                  <p className="text-xs italic text-text-faded">
+                    {pub.journal} · {pub.year}
+                  </p>
+
+                  {pub.link && (
+                    <Magnetic>
+                      <a
+                        href={pub.link}
+                        target="_blank"
+                        className="text-accent hover:text-blue-300 hover-glow text-xs underline underline-offset-4"
+                      >
+                        View Publication
+                      </a>
+                    </Magnetic>
+                  )}
+                </li>
+              </Reveal>
             ))}
           </ul>
         </Section>
 
-        {/* Experience */}
-        <Section id="experience" title="Experience">
-          <div className="space-y-8">
-            {experience.map(job => (
-              <div key={job.role} className="space-y-1">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <p className="text-sm font-medium text-slate-100">{job.role}</p>
-                  <p className="text-xs text-slate-500">{job.period}</p>
+        {/* SKILLS */}
+        <Section id="skills" title="Skills & Tools">
+          <Reveal>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-3">
+                  Research
+                </h3>
+                <ul className="space-y-1 text-text-body">
+                  {skills.research.map(s => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-3">
+                  Methods
+                </h3>
+                <ul className="space-y-1 text-text-body">
+                  {skills.methods.map(s => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-3">
+                  Tools
+                </h3>
+                <ul className="space-y-1 text-text-body">
+                  {skills.tools.map(s => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
+        </Section>
+
+        {/* MANUSCRIPTS */}
+        <Section id="manuscripts" title="Under Review">
+          <ul className="space-y-3">
+            {manuscripts.map((m, i) => (
+              <Reveal key={i}>
+                <li className="text-text-body text-sm">{m}</li>
+              </Reveal>
+            ))}
+          </ul>
+        </Section>
+
+        {/* EXPERIENCE */}
+        <Section id="experience" title="Teaching & Research Experience">
+          {experience.map((job, i) => (
+            <Reveal key={i} delay={i * 0.1}>
+              <div className="pb-8 space-y-1">
+                <div className="flex justify-between items-baseline">
+                  <p className="font-medium text-text-secondary">{job.role}</p>
+                  <span className="text-xs text-text-faded">{job.period}</span>
                 </div>
-                <p className="text-xs text-slate-400">
+
+                <p className="text-xs text-text-muted">
                   {job.org} · {job.location}
                 </p>
-                <ul className="mt-2 list-disc space-y-1 pl-4 text-xs text-slate-300">
+
+                <ul className="list-disc pl-5 mt-2 space-y-1 text-xs text-text-body">
                   {job.bullets.map(b => (
                     <li key={b}>{b}</li>
                   ))}
                 </ul>
               </div>
-            ))}
-          </div>
+            </Reveal>
+          ))}
         </Section>
 
-        {/* Education */}
+        {/* EDUCATION */}
         <Section id="education" title="Education">
-          <div className="space-y-6">
-            {education.map(ed => (
-              <div key={ed.degree} className="space-y-1">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <p className="text-sm font-medium text-slate-100">{ed.degree}</p>
-                  <p className="text-xs text-slate-500">{ed.period}</p>
+          {education.map((ed, i) => (
+            <Reveal key={i} delay={i * 0.1}>
+              <div className="pb-8 space-y-1">
+                <div className="flex justify-between items-baseline">
+                  <p className="font-medium text-text-secondary">{ed.degree}</p>
+                  <span className="text-xs text-text-faded">{ed.period}</span>
                 </div>
-                <p className="text-xs text-slate-400">
+
+                <p className="text-xs text-text-muted">
                   {ed.school} · {ed.location}
                 </p>
-                <ul className="mt-2 list-disc space-y-1 pl-4 text-xs text-slate-300">
-                  {ed.highlights.map(h => (
-                    <li key={h}>{h}</li>
-                  ))}
-                </ul>
+
+                {ed.highlights && (
+                  <ul className="list-disc pl-5 mt-2 space-y-1 text-xs text-text-body">
+                    {ed.highlights.map(h => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
-            ))}
-          </div>
+            </Reveal>
+          ))}
         </Section>
 
-        {/* Skills */}
-        <Section id="skills" title="Skills & Tools">
-          <div className="grid gap-4 md:grid-cols-3">
-            <div>
-              <h3 className="text-xs font-semibold uppercase text-slate-400">
-                Research & Thematic
-              </h3>
-              <ul className="mt-2 space-y-1 text-xs">
-                {skills.research.map(s => (
-                  <li key={s} className="text-slate-300">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xs font-semibold uppercase text-slate-400">Methods</h3>
-              <ul className="mt-2 space-y-1 text-xs">
-                {skills.methods.map(s => (
-                  <li key={s} className="text-slate-300">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xs font-semibold uppercase text-slate-400">Software & Tools</h3>
-              <ul className="mt-2 space-y-1 text-xs">
-                {skills.tools.map(s => (
-                  <li key={s} className="text-slate-300">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Section>
-
-        {/* Awards */}
-        <Section id="awards" title="Awards & Scholarships">
-          <ul className="space-y-2 text-xs">
-            {awards.map(a => (
-              <li key={a} className="text-slate-300">
-                {a}
-              </li>
+        {/* GRANTS */}
+        <Section id="grants" title="Grants & Funding">
+          <ul className="space-y-2">
+            {grants.map((g, i) => (
+              <Reveal key={i}>
+                <li className="text-text-body text-sm">{g}</li>
+              </Reveal>
             ))}
           </ul>
         </Section>
-      </div>
-    </main>
+
+        {/* TRAININGS */}
+        <Section id="trainings" title="Trainings & Workshops">
+          <ul className="space-y-2">
+            {trainings.map((t, i) => (
+              <Reveal key={i}>
+                <li className="text-text-body text-sm">{t}</li>
+              </Reveal>
+            ))}
+          </ul>
+        </Section>
+
+        {/* AWARDS */}
+        <Section id="awards" title="Awards & Achievements">
+          <ul className="space-y-2">
+            {awards.map((a, i) => (
+              <Reveal key={i}>
+                <li className="text-text-body text-sm">{a}</li>
+              </Reveal>
+            ))}
+          </ul>
+        </Section>
+
+        {/* LEADERSHIP */}
+        <Section id="leadership" title="Leadership & Volunteer Experience">
+          {leadership.map((l, i) => (
+            <Reveal key={i}>
+              <div className="pb-6 space-y-1">
+                <p className="font-medium text-text-secondary">{l.role}</p>
+                {l.org && (
+                  <p className="text-xs text-text-muted">
+                    {l.org} · {l.period}
+                  </p>
+                )}
+                {!l.org && <p className="text-xs text-text-muted">{l.period}</p>}
+
+                <ul className="list-disc pl-5 mt-2 space-y-1 text-xs text-text-body">
+                  {l.bullets.map(b => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </Section>
+
+        {/* SEMINARS */}
+        <Section id="seminars" title="Seminars & Conferences">
+          <ul className="space-y-2">
+            {seminars.map((s, i) => (
+              <Reveal key={i}>
+                <li className="text-text-body text-sm">{s}</li>
+              </Reveal>
+            ))}
+          </ul>
+        </Section>
+      </Container>
+    </div>
   );
 }

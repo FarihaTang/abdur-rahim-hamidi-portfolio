@@ -1,6 +1,7 @@
 'use client';
 import { navigation, profile } from '@/app/lib/data';
 import Magnetic from './Magnetic';
+import Reveal from './Reveal';
 export default function Sidebar() {
   const handleScroll = (id: string) => {
     const el = document.getElementById(id);
@@ -9,63 +10,90 @@ export default function Sidebar() {
     }
   };
   return (
-    <aside className="sticky top-0 flex h-screen flex-col justify-between border-r border-slate-800 px-6 py-10 max-md:h-auto max-md:static max-md:border-r-0 max-md:pb-4">
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-semibold text-slate-50">{profile.name}</h1>
-          <p className="mt-2 text-sm font-medium text-emerald-400">{profile.title}</p>
-          <p className="mt-2 text-sm text-slate-400">{profile.location}</p>
-        </div>
-
-        <p className="text-sm leading-relaxed text-slate-400">
-          I am a climate and disaster risk researcher focusing on{' '}
-          <span className="text-slate-200">
-            social vulnerability, resilience, and flood risk governance
-          </span>{' '}
-          in Pakistan and beyond.
-        </p>
-
-        <div className="space-y-1 text-sm">
+    <aside
+      className="w-full md:w-1/3 
+        md:sticky md:top-0 
+        md:h-screen 
+        border-b md:border-b-0 md:border-r 
+        border-slate-800/40 
+        px-6 py-10 md:px-10 
+        flex flex-col justify-between"
+    >
+      {/* Top Section */}
+      <div className="space-y-10">
+        {/* Name */}
+        <Reveal>
+          <div>
+            <h1 className="text-3xl font-semibold tracking-tight text-slate-50">{profile.name}</h1>
+            <p className="text-text-secondary mt-2 font-medium text-emerald-400">{profile.title}</p>
+            <p className="mt-2 text-sm text-slate-400">{profile.location}</p>
+          </div>
+        </Reveal>
+        {/* Summary */}
+        <Reveal delay={0.15}>
+          <p className="text-sm leading-relaxed max-w-xs">{profile.sidebarSummary}</p>
+        </Reveal>
+        {/* Contact */}
+        {/* <div className="space-y-1 text-sm">
           <a
-            href={`mailto:${profile.contacts.email}`}
+            href={`mailto:${profile.email}`}
             className="block text-slate-300 hover:text-emerald-400"
           >
-            {profile.contacts.email}
+            {profile.email}
           </a>
-          <span className="block text-slate-500">{profile.contacts.phone}</span>
-        </div>
+          <span className="block text-slate-400">{profile.phone}</span>
+        </div> */}
+        {/* Links */}
+        <Reveal delay={0.25}>
+          <div className="flex flex-wrap gap-3 pt-2 text-xs font-medium text-slate-400">
+            {profile.links.map(link => (
+              <Magnetic key={link.label}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  className="
+                    text-text-muted 
+                    hover:text-accent 
+                    hover-glow 
+                    transition-colors 
+                    underline underline-offset-4 decoration-slate-700/30
+                    hover:decoration-emerald-500
+                    hover:text-emerald-400
+                  "
+                >
+                  {link.label}
+                </a>
+              </Magnetic>
+            ))}
+          </div>
+        </Reveal>
+        {/* Navigation */}
+        <Reveal delay={0.3}>
+          <nav className="hidden md:flex flex-col gap-4 pt-6 text-sm">
+            {navigation.map(nav => (
+              <div className="group w-fit" key={nav.id}>
+                <button
+                  onClick={() =>
+                    document.getElementById(nav.id)?.scrollIntoView({ behavior: 'smooth' })
+                  }
+                  className="relative w-fit text-text-muted hover:text-accent transition-colors pb-1.5"
+                >
+                  {nav.label}
 
-        <div className="flex flex-wrap gap-3 text-xs font-medium text-slate-400">
-          {profile.links.map(link => (
-            <Magnetic key={link.label}>
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-                className="underline decoration-slate-600 underline-offset-4 hover:text-emerald-400 hover:decoration-emerald-500"
-              >
-                {link.label}
-              </a>
-            </Magnetic>
-          ))}
-        </div>
-
-        <nav className="mt-6 hidden flex-col gap-2 text-sm text-slate-400 md:flex">
-          {navigation.map(item => (
-            <button
-              key={item.id}
-              onClick={() => handleScroll(item.id)}
-              className="w-fit text-left transition hover:text-emerald-400"
-            >
-              {item.label}
-            </button>
-          ))}
-        </nav>
+                  {/* Underline animation */}
+                  <span className="pointer-events-none absolute left-0 bottom-0 h-[2px] bg-emerald-400 w-0 transition-all duration-300 group-hover:w-full" />
+                </button>
+              </div>
+            ))}
+          </nav>
+        </Reveal>
       </div>
-
-      <p className="mt-10 text-xs text-slate-600 max-md:hidden">
-        © {new Date().getFullYear()} {profile.name}
-      </p>
+      {/* Footer */}
+      <Reveal delay={0.35}>
+        <p className="text-xs text-text-faded mt-12">
+          © {new Date().getFullYear()} {profile.name}
+        </p>
+      </Reveal>
     </aside>
   );
 }
