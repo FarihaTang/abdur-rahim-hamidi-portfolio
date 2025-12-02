@@ -63,8 +63,6 @@ export default function Sidebar() {
           </div>
         </Reveal>
 
-        <ViewResumeButton />
-
         {/* Navigation */}
         <Reveal delay={0.3}>
           <nav className="hidden md:flex flex-row flex-wrap pt-2 text-sm">
@@ -88,13 +86,16 @@ export default function Sidebar() {
             ))}
           </nav>
         </Reveal>
+
+        {/* Resume */}
+        <Reveal delay={0.35}>
+          <ViewResumeButton></ViewResumeButton>
+        </Reveal>
       </div>
       {/* Footer */}
-      <Reveal delay={0.35}>
-        <p className="text-xs text-text-faded mt-12">
-          © {new Date().getFullYear()} {profile.name}
-        </p>
-      </Reveal>
+      <p className="text-xs text-text-faded mt-12 text-slate-600">
+        © {new Date().getFullYear()} {profile.name}
+      </p>
     </aside>
   );
 }

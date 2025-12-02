@@ -17,6 +17,7 @@ export default function ViewResumeButton() {
           bg-slate-900/30 
           hover:bg-slate-900/60
           hover:text-accent
+          hover:text-emerald-400
           hover-glow
           transition-all 
           duration-300
