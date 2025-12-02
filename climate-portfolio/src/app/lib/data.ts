@@ -43,15 +43,15 @@ export const profile = {
    Navigation
 --------------------------*/
 export const navigation = [
-  { id: 'about', label: 'About' },
+  // { id: 'about', label: 'About' },
   { id: 'publications', label: 'Publications' },
-  { id: 'skills', label: 'Skills' },
   { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
   { id: 'grants', label: 'Grants & Funding' },
   { id: 'trainings', label: 'Trainings' },
   { id: 'awards', label: 'Awards' },
   { id: 'leadership', label: 'Leadership' },
+  { id: 'skills', label: 'Skills' },
   { id: 'seminars', label: 'Seminars & Conferences' },
 ];
 

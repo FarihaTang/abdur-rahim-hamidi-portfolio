@@ -2,13 +2,8 @@
 import { navigation, profile } from '@/app/lib/data';
 import Magnetic from './Magnetic';
 import Reveal from './Reveal';
+import ViewResumeButton from './ViewResumeButton';
 export default function Sidebar() {
-  const handleScroll = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
   return (
     <aside
       className="w-full md:w-1/3 
@@ -45,7 +40,7 @@ export default function Sidebar() {
         </div> */}
         {/* Links */}
         <Reveal delay={0.25}>
-          <div className="flex flex-wrap gap-3 pt-2 text-xs font-medium text-slate-400">
+          <div className="flex flex-wrap gap-3 text-xs font-medium text-slate-400">
             {profile.links.map(link => (
               <Magnetic key={link.label}>
                 <a
@@ -67,11 +62,17 @@ export default function Sidebar() {
             ))}
           </div>
         </Reveal>
+
+        <ViewResumeButton />
+
         {/* Navigation */}
         <Reveal delay={0.3}>
-          <nav className="hidden md:flex flex-col gap-4 pt-6 text-sm">
+          <nav className="hidden md:flex flex-row flex-wrap pt-2 text-sm">
             {navigation.map(nav => (
-              <div className="group w-fit" key={nav.id}>
+              <div
+                className={`group ${nav.id === 'seminars' ? 'w-fit' : 'w-1/2'} pb-4`}
+                key={nav.id}
+              >
                 <button
                   onClick={() =>
                     document.getElementById(nav.id)?.scrollIntoView({ behavior: 'smooth' })

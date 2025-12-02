@@ -19,6 +19,7 @@ import {
   leadership,
   seminars,
 } from '@/app/lib/data';
+import GoToTopButton from './components/GotoTopButton';
 
 export default function Page() {
   return (
@@ -54,7 +55,7 @@ export default function Page() {
                       <a
                         href={pub.link}
                         target="_blank"
-                        className="text-accent hover:text-blue-300 hover-glow text-xs underline underline-offset-4"
+                        className="text-accent hover:text-emerald-300 hover-glow text-xs underline underline-offset-4"
                       >
                         View Publication
                       </a>
@@ -65,47 +66,6 @@ export default function Page() {
             ))}
           </ul>
         </Section>
-
-        {/* SKILLS */}
-        <Section id="skills" title="Skills & Tools">
-          <Reveal>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-3">
-                  Research
-                </h3>
-                <ul className="space-y-1 text-text-body">
-                  {skills.research.map(s => (
-                    <li key={s}>{s}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-3">
-                  Methods
-                </h3>
-                <ul className="space-y-1 text-text-body">
-                  {skills.methods.map(s => (
-                    <li key={s}>{s}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-3">
-                  Tools
-                </h3>
-                <ul className="space-y-1 text-text-body">
-                  {skills.tools.map(s => (
-                    <li key={s}>{s}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Reveal>
-        </Section>
-
         {/* MANUSCRIPTS */}
         <Section id="manuscripts" title="Under Review">
           <ul className="space-y-3">
@@ -223,6 +183,46 @@ export default function Page() {
           ))}
         </Section>
 
+        {/* SKILLS */}
+        <Section id="skills" title="Skills & Tools">
+          <Reveal>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-3">
+                  Research
+                </h3>
+                <ul className="space-y-1 text-text-body">
+                  {skills.research.map(s => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-3">
+                  Methods
+                </h3>
+                <ul className="space-y-1 text-text-body">
+                  {skills.methods.map(s => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold mb-3">
+                  Tools
+                </h3>
+                <ul className="space-y-1 text-text-body">
+                  {skills.tools.map(s => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
+        </Section>
+
         {/* SEMINARS */}
         <Section id="seminars" title="Seminars & Conferences">
           <ul className="space-y-2">
@@ -234,6 +234,9 @@ export default function Page() {
           </ul>
         </Section>
       </Container>
+
+      {/* Near the bottom: */}
+      <GoToTopButton />
     </div>
   );
 }
