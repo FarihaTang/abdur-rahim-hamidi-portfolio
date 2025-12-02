@@ -30,7 +30,7 @@ export default function Page() {
       {/* Content */}
       <Container>
         {/* ABOUT */}
-        <Section id="about" title="About Me">
+        <Section id="about" title="About Me" immediate>
           {profile.summary.map((p, i) => (
             <Reveal key={i} delay={i * 0.15}>
               <p className="text-text-body">{p}</p>

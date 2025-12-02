@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
+// import { GeistSans } from 'geist/font/sans';
+// import { GeistMono } from 'geist/font/mono';
 
 export const metadata: Metadata = {
   title: 'Abdur Rahim Hamidi | Climate & Disaster Risk Researcher',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${GeistSans.variable} ${GeistMono.variable} relative`}>{children}</body>
+      <body className={`relative`}>{children}</body>
     </html>
   );
 }
