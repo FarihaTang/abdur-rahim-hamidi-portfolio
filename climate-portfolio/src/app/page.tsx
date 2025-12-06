@@ -5,6 +5,7 @@ import Container from '@/app/components/Container';
 import Section from '@/app/components/Section';
 import Reveal from '@/app/components/Reveal';
 import Magnetic from '@/app/components/Magnetic';
+import Image from 'next/image';
 
 import {
   profile,
@@ -23,7 +24,18 @@ import GoToTopButton from './components/GotoTopButton';
 
 export default function Page() {
   return (
-    <div className="flex flex-col md:flex-row max-w-6xl mx-auto min-h-screen">
+    <div className="flex flex-col md:flex-row max-w-[1500px] mx-auto min-h-screen">
+      <div className="hidden md:block pr-[50px]">
+        <div className="sticky top-[50px]">
+          <Image
+            src="/Abdur.JPG"
+            alt="Profile photo"
+            width={240}
+            height={240}
+            className="rounded-2xl object-cover shadow-md dark:shadow-black/40"
+          />
+        </div>
+      </div>
       {/* Sidebar */}
       <Sidebar />
 

@@ -6,7 +6,7 @@ import ViewResumeButton from './ViewResumeButton';
 export default function Sidebar() {
   return (
     <aside
-      className="w-full md:w-1/3 
+      className="w-full md:w-2/5
         md:sticky md:top-0 
         md:h-screen 
         border-b md:border-b-0 md:border-r 
@@ -131,11 +131,6 @@ export default function Sidebar() {
         <Reveal delay={0.35}>
           <ViewResumeButton></ViewResumeButton>
         </Reveal>
-
-        {/* Theme Toggle */}
-        {/* <Reveal delay={0.4}>
-          <ThemeToggle></ThemeToggle>
-        </Reveal> */}
       </div>
       {/* Footer */}
       <p className="text-xs text-text-faded mt-12 text-slate-600">
