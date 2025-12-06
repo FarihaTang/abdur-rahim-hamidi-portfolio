@@ -33,7 +33,7 @@ export default function Page() {
         <Section id="about" title="About Me" immediate>
           {profile.summary.map((p, i) => (
             <Reveal key={i} delay={i * 0.15}>
-              <p className="text-text-body">{p}</p>
+              <p className="text-text-body text-justify">{p}</p>
             </Reveal>
           ))}
         </Section>

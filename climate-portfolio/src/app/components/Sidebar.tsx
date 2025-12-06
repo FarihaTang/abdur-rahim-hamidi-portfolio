@@ -19,14 +19,33 @@ export default function Sidebar() {
         {/* Name */}
         <Reveal>
           <div>
-            <h1 className="text-3xl font-semibold tracking-tight text-slate-50">{profile.name}</h1>
-            <p className="text-text-secondary mt-2 font-medium text-emerald-400">{profile.title}</p>
+            <h1 className="text-3xl font-semibold tracking-tight text-slate-50 mb-2">
+              {profile.name}
+            </h1>
+            {profile.title.map(t => (
+              <p key={t.label}>
+                <a
+                  href={t.link}
+                  target="_blank"
+                  className="
+                text-text-secondary font-medium text-emerald-400
+                    hover:text-accent 
+                    hover-glow 
+                    transition-colors 
+                    hover:text-emerald-300
+                  "
+                >
+                  {t.label}
+                  <span className="text-xs text-slate-400"> ↗</span>
+                </a>
+              </p>
+            ))}
             <p className="mt-2 text-sm text-slate-400">{profile.location}</p>
           </div>
         </Reveal>
         {/* Summary */}
         <Reveal delay={0.15}>
-          <p className="text-sm leading-relaxed max-w-xs">{profile.sidebarSummary}</p>
+          <p className="text-sm leading-relaxed max-w-xs text-justify">{profile.sidebarSummary}</p>
         </Reveal>
         {/* Contact */}
         {/* <div className="space-y-1 text-sm">
@@ -40,6 +59,27 @@ export default function Sidebar() {
         </div> */}
         {/* Links */}
         <Reveal delay={0.25}>
+          {/* University Profile */}
+          <div className="flex flex-wrap gap-2 font-medium text-xs mb-2">
+            <span className="font-normal">Visit My</span>
+            <Magnetic>
+              <a
+                href={profile.universityProfile}
+                target="_blank"
+                className="
+                    text-xs 
+                    text-text-muted 
+                    hover:text-accent 
+                    hover-glow 
+                    transition-colors 
+                    hover:text-emerald-400
+                  "
+              >
+                University Profile
+              </a>
+              <span className="text-xs text-slate-400"> ↗</span>
+            </Magnetic>
+          </div>
           <div className="flex flex-wrap gap-3 text-xs font-medium text-slate-400">
             {profile.links.map(link => (
               <Magnetic key={link.label}>
@@ -91,6 +131,11 @@ export default function Sidebar() {
         <Reveal delay={0.35}>
           <ViewResumeButton></ViewResumeButton>
         </Reveal>
+
+        {/* Theme Toggle */}
+        {/* <Reveal delay={0.4}>
+          <ThemeToggle></ThemeToggle>
+        </Reveal> */}
       </div>
       {/* Footer */}
       <p className="text-xs text-text-faded mt-12 text-slate-600">

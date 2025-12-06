@@ -5,7 +5,16 @@
 --------------------------*/
 export const profile = {
   name: 'Abdur Rahim HAMIDI',
-  title: 'Priestley Climate Scholar · ESRC WRDTP Funded Researcher',
+  title: [
+    {
+      label: 'ESRC WRDTP Funded Researcher',
+      link: 'https://wrdtp.ac.uk/information-for-award-holders/esrc-phd-students/#CEL',
+    },
+    {
+      label: 'Priestley Climate Scholar',
+      link: 'https://climate.leeds.ac.uk/profile_type/priestley-scholar/',
+    },
+  ],
   location: 'Leeds, United Kingdom',
   email: 'hamidi.abdur@yahoo.com',
   phone: '+44 74435224',
@@ -14,12 +23,12 @@ export const profile = {
 
   sidebarSummary:
     'Climate resilience and disaster risk researcher integrating political ecology and decolonial environmental approaches, with a focus on vulnerability, governance, and equitable adaptation.',
+  universityProfile: 'https://environment.leeds.ac.uk/see/pgr/11967/abdur-rahim-hamidi',
 
   summary: [
-    'My research focuses on the human dimensions of climate change and disasters, emphasizing vulnerability, resilience, and disaster risk reduction (DRR) in context-specific settings.',
-    'I integrate political ecology and decolonial environmental approaches to analyse how power, history, and knowledge shape human–environment relations and uneven climate impacts.',
-    'My work explores how frontline communities experience climate and disaster risks, paying special attention to structural inequalities, governance processes, and colonial legacies shaping vulnerability and adaptive capacity.',
-    'Using mixed-methods research, GIS-based spatial analysis, and community-engaged fieldwork, I co-produce knowledge to generate policy-relevant insights and locally actionable strategies for equitable resilience and sustainable development.',
+    'I am a researcher exploring the human dimensions of climate change and disasters, with a focus on vulnerability, resilience, and disaster risk reduction (DRR) in context-specific settings. My work examines how frontline communities perceive, experience, cope with, and adapt to climate- and disaster-related risks, paying particular attention to structural inequalities, colonial legacies, and governance processes that shape vulnerability and adaptive capacity.',
+    'Drawing on political ecology and decolonial environmental approaches, I study how power, history, and knowledge shape human–environment relations and produce uneven climate impacts. My research uses mixed-methods approaches, GIS-based spatial analysis, and community-engaged fieldwork, allowing me to co-produce knowledge that informs policy and generates locally actionable strategies for equitable resilience and sustainable development.',
+    'Previously, I worked as a Research Associate at Huazhong University of Science and Technology (China), contributing to projects on user-generated content, intelligent data mining, and decision-support systems for emergency management. I have also collaborated with the Centre for Disaster Preparedness and Management (University of Peshawar), the Provincial Disaster Management Authority (Pakistan), and ACF International Pakistan on disaster risk reduction initiatives, as well as nationally funded research projects on multi-hazard vulnerabilities and community resilience in Pakistan.',
   ],
 
   links: [
